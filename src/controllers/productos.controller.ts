@@ -4,50 +4,48 @@ import {
   Delete,
   Get,
   Param,
+  ParseIntPipe,
   Post,
   Put,
   Query,
 } from '@nestjs/common';
+import { CreateProductDTO, UpdateProductDTO } from 'src/dtos/products.dto';
+import { ProductsService } from 'src/services/products.service';
 
 @Controller('productos')
 export class ProductosController {
+  constructor(private productsService: ProductsService) {}
+
   @Get()
-  getAllProducts(): string {
-    return `Retorna todos los productos`;
+  findAll(
+    @Query('limit')
+    limit: number = 100,
+    @Query('offset') offset: number = 0,
+    @Query('origin') origin: string = '',
+  ) {
+    return this.productsService.findAll(limit, offset, origin);
   }
 
   @Get(':id')
-  getProductById(@Param('id') id: string): string {
-    return `Producto con ID ${id}`;
-  }
-
-  @Get('filtrar/genero')
-  getByGender(
-    @Query('name') name: string,
-    @Query('category') category = 'sin especificar',
-  ): string {
-    return `El producto ${name} pertenece a la categoria ${category}`;
+  findById(@Param('id', ParseIntPipe) id: number) {
+    return this.productsService.findById(id);
   }
 
   @Post()
-  createProduct(@Body() payload: any) {
-    return `El producto creado es un ${payload.name}`;
+  createProduct(@Body() payload: CreateProductDTO) {
+    return this.productsService.create(payload);
   }
 
-  @Put(':idProduct')
-  updateProduct(@Param('idProduct') idProduct: string, @Body() body: any): any {
-    return {
-      idProduct: idProduct,
-      name: body.name,
-      category: body.category,
-    };
+  @Put(':id')
+  update(
+    @Param('id', ParseIntPipe) id: number,
+    @Body() payload: UpdateProductDTO,
+  ): any {
+    return this.productsService.update(id, payload);
   }
 
-  @Delete(':idProduct')
-  deleteProduct(@Param('idProduct') idProduct: string): any {
-    return {
-      idProduct: idProduct,
-      delete: true,
-    };
+  @Delete(':id')
+  delete(@Param('id', ParseIntPipe) id: number) {
+    return this.productsService.delete(id);
   }
 }
