@@ -7,6 +7,12 @@ import { FabricantesController } from './controllers/fabricantes.controller';
 import { OperadoresController } from './controllers/operadores.controller';
 import { PedidosController } from './controllers/pedidos.controller';
 import { ProductosController } from './controllers/productos.controller';
+import { CategoriasService } from './services/categorias.service';
+import { CompradoresService } from './services/compradores.service';
+import { FabricantesService } from './services/fabricantes.service';
+import { OperadoresService } from './services/operadores.service';
+import { PedidosService } from './services/pedidos.service';
+import { ProductsService } from './services/products.service';
 
 @Module({
   imports: [],
@@ -19,6 +25,14 @@ import { ProductosController } from './controllers/productos.controller';
     CompradoresController,
     CategoriasController,
   ],
-  providers: [AppService],
+  providers: [
+    AppService,
+    ProductsService,
+    CategoriasService,
+    CompradoresService,
+    FabricantesService,
+    OperadoresService,
+    PedidosService,
+  ],
 })
 export class AppModule {}
