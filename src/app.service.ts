@@ -1,8 +1,9 @@
-import { Injectable } from '@nestjs/common';
+import { Inject, Injectable } from '@nestjs/common';
 
 @Injectable()
 export class AppService {
+  constructor(@Inject('APIKEY') private APIKEY: string) {}
   getHello(): string {
-    return 'Hello World!';
+    return `La llave de la aplicacion es: ${this.APIKEY}`;
   }
 }
