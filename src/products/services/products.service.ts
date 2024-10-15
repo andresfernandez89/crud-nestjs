@@ -29,7 +29,7 @@ export class ProductsService {
     },
   ];
 
-  findAll(limit: number, offset: number, origin: string): Product[] {
+  findAll(limit?: number, offset?: number, origin?: string): Product[] {
     const filteredProducts = origin
       ? this.products.filter((product) => product.origin === origin)
       : this.products;
