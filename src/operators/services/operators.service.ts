@@ -1,11 +1,14 @@
-import { Injectable } from '@nestjs/common';
+import { Inject, Injectable } from '@nestjs/common';
 import { ProductsService } from 'src/products/services/products.service';
 import { Operator } from '../entities/operator.entity';
 import { Order } from '../entities/order.entity';
 
 @Injectable()
 export class OperatorsService {
-  constructor(private productsService: ProductsService) {}
+  constructor(
+    private productsService: ProductsService,
+    @Inject('APIKEY') private apiKey: string,
+  ) {}
 
   findOne(id: number): Operator {
     return {
