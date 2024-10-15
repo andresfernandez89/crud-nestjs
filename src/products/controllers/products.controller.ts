@@ -9,11 +9,14 @@ import {
   Put,
   Query,
 } from '@nestjs/common';
-import { CreateProductDTO, UpdateProductDTO } from 'src/dtos/products.dto';
-import { ProductsService } from 'src/services/products.service';
+import {
+  CreateProductDTO,
+  UpdateProductDTO,
+} from 'src/products/dtos/products.dto';
+import { ProductsService } from 'src/products/services/products.service';
 
 @Controller('productos')
-export class ProductosController {
+export class ProductsController {
   constructor(private productsService: ProductsService) {}
 
   @Get()
