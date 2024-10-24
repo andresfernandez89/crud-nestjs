@@ -1,5 +1,6 @@
 import { Inject, Injectable } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
+import { Client } from 'pg';
 import { ProductsService } from 'src/products/services/products.service';
 import { Operator } from '../entities/operator.entity';
 import { Order } from '../entities/order.entity';
@@ -10,6 +11,7 @@ export class OperatorsService {
     private productsService: ProductsService,
     @Inject('APIKEY') private apiKey: string,
     private configService: ConfigService,
+    @Inject('PG') private clientPg: Client,
   ) {}
 
   findOne(id: number): Operator {
@@ -30,5 +32,16 @@ export class OperatorsService {
       operator,
       products: this.productsService.findAll(100, 0, ''),
     };
+  }
+
+  getTasks() {
+    return new Promise((resolve, reject) => {
+      this.clientPg.query('SELECT * FROM tasks', (err, res) => {
+        if (err) {
+          reject(err);
+        }
+        resolve(res.rows);
+      });
+    });
   }
 }

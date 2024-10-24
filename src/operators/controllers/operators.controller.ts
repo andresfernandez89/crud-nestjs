@@ -15,4 +15,12 @@ export class OperatorsController {
   getOrders(@Param('id', ParseIntPipe) id: number) {
     return this.operatorsService.getOrderByUser(id);
   }
+
+  @ApiOperation({
+    summary: 'Get all tasks',
+  })
+  @Get('tareas')
+  getTasks() {
+    return this.operatorsService.getTasks();
+  }
 }
