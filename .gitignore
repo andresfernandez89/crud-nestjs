@@ -46,6 +46,9 @@ lerna-debug.log*
 # databases
 /postgres_data
 
+#pgAdmin Data Directories
+/pgadmin_data
+
 # temp directory
 .temp
 .tmp
