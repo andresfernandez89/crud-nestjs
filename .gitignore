@@ -45,6 +45,7 @@ lerna-debug.log*
 
 # databases
 /postgres_data
+/mysql_data
 
 #pgAdmin Data Directories
 /pgadmin_data

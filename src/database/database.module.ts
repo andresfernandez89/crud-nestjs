@@ -13,9 +13,11 @@ const APIKEYPROD = 'PROD-12345';
     TypeOrmModule.forRootAsync({
       inject: [config.KEY],
       useFactory: (configService: ConfigType<typeof config>) => {
-        const { user, host, dbName, password, port } = configService.postgres;
+        //const { user, host, dbName, password, port } = configService.postgres;
+        const { user, host, dbName, password, port } = configService.mysql;
         return {
-          type: 'postgres',
+          //type: 'postgres',
+          type: 'mysql',
           username: user,
           host,
           database: dbName,
