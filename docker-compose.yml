@@ -20,7 +20,7 @@ services:
     volumes:
       - ./pgadmin_data:/var/lib/pgadmin
 
-  mysql:
+  mysqlcali:
     image: mysql:5
     environment:
       - MYSQL_DATABASE=my_db
