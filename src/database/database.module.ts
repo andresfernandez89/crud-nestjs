@@ -23,7 +23,7 @@ const APIKEYPROD = 'PROD-12345';
           database: dbName,
           password,
           port,
-          synchronize: true,
+          synchronize: false,
           autoLoadEntities: true,
         };
       },
