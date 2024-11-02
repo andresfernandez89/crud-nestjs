@@ -1,6 +1,6 @@
 import { Global, Module } from '@nestjs/common';
 import { ConfigType } from '@nestjs/config';
-import { TypeOrmModule } from '@nestjs/typeorm';
+import { TypeOrmModule, TypeOrmModuleOptions } from '@nestjs/typeorm';
 import { Client } from 'pg';
 import config from 'src/config';
 
@@ -14,10 +14,10 @@ const APIKEYPROD = 'PROD-12345';
       inject: [config.KEY],
       useFactory: (configService: ConfigType<typeof config>) => {
         const { user, host, dbName, password, port } = configService.postgres;
-        //const { user, host, dbName, password, port } = configService.mysql;
-        return {
-          type: 'postgres',
+        return <TypeOrmModuleOptions>{
+          //const { user, host, dbName, password, port } = configService.mysql;
           //type: 'mysql',
+          type: 'postgres',
           username: user,
           host,
           database: dbName,

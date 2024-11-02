@@ -22,12 +22,6 @@ export class OperatorsService {
     const apikey = this.configService.get('APIKEY');
     const dbname = this.configService.get('DB_NAME');
     console.log(apikey, dbname);
-    /* return {
-      id: id,
-      password: '1234',
-      email: 'operadorA@gmail.com',
-      role: '',
-      }; */
     const operator = this.operatorRepo.findOneBy({ id });
     if (!operator) {
       throw new NotFoundException(
