@@ -1,4 +1,12 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import {
+  Column,
+  CreateDateColumn,
+  Entity,
+  OneToOne,
+  PrimaryGeneratedColumn,
+  UpdateDateColumn,
+} from 'typeorm';
+import { Operator } from './operator.entity';
 
 @Entity()
 export class Buyer {
@@ -13,4 +21,19 @@ export class Buyer {
 
   @Column({ type: 'varchar', length: 20 })
   phone: string;
+
+  @OneToOne(() => Operator, (operator) => operator.buyer, { nullable: true })
+  operator: Operator;
+
+  @CreateDateColumn({
+    type: 'timestamptz',
+    default: () => 'CURRENT_TIMESTAMP',
+  })
+  createAt: Date;
+
+  @UpdateDateColumn({
+    type: 'timestamptz',
+    default: () => 'CURRENT_TIMESTAMP',
+  })
+  updateAt: Date;
 }
