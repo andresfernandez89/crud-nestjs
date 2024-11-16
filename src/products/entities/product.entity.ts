@@ -2,9 +2,11 @@ import {
   Column,
   CreateDateColumn,
   Entity,
+  ManyToOne,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
+import { Manufacturer } from './manufacturer.entity';
 
 @Entity()
 export class Product {
@@ -28,6 +30,9 @@ export class Product {
 
   @Column({ type: 'varchar' })
   image: string;
+
+  @ManyToOne(() => Manufacturer, (manufacturer) => manufacturer.products)
+  manufacturer: Manufacturer;
 
   @CreateDateColumn({
     type: 'timestamptz',
