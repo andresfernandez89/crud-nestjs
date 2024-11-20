@@ -11,7 +11,6 @@ import { Product } from 'src/products/entities/product.entity';
 import { Buyer } from './entities/buyer.entity';
 import { Operator } from './entities/operator.entity';
 
-import { ProductsService } from 'src/products/services/products.service';
 import { BuyersService } from './services/buyers.service';
 import { OperatorsService } from './services/operators.service';
 import { OrdersService } from './services/orders.service';
@@ -22,6 +21,6 @@ import { OrdersService } from './services/orders.service';
     TypeOrmModule.forFeature([Product, Operator, Buyer]),
   ],
   controllers: [BuyersController, OperatorsController, OrdersController],
-  providers: [BuyersService, OperatorsService, OrdersService, ProductsService],
+  providers: [BuyersService, OperatorsService, OrdersService],
 })
 export class OperatorsModule {}
